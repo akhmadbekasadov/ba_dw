@@ -72,14 +72,14 @@ def read():
 
 	# Set timer of next interrupt:
 	next_call = next_call + 0.04
-        threading.Timer( next_call - time.time(), read).start()
+    threading.Timer(next_call - time.time(), read).start()
 	#print(time.time())
 	# Save the queried value:
 	f=open('live_data.csv','a')
 
 	temp_read0 = adc.read_adc(0)
-        temp_read1 = adc.read_adc(1)
-        temp_read2 = adc.read_adc(2)
+    temp_read1 = adc.read_adc(1)
+    temp_read2 = adc.read_adc(2)
 	temp_read3 = adc.read_adc(3)
 
 	y0.append(temp_read0)
@@ -88,20 +88,20 @@ def read():
 	y3.append(temp_read3)
 
 
-        f.write(str(fill) + "; " + str(time.time())  + "; " + str(temp_read0) + "; " + str(temp_read1) + "; " + str(temp_read2) + "; " + str(temp_read3) + "\n")
+    f.write(str(fill) + "; " + str(time.time())  + "; " + str(temp_read0) + "; " + str(temp_read1) + "; " + str(temp_read2) + "; " + str(temp_read3) + "\n")
 
 	f.close
 
 	# print (datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3])
 
 	# Delete old values if they exist:
-        if (fill >= ((T*fs)+1)):
-                y0.pop(0)
-                y1.pop(0)
-                y2.pop(0)
-                y3.pop(0)
+    if (fill >= ((T*fs)+1)):
+        y0.pop(0)
+        y1.pop(0)
+        y2.pop(0)
+        y3.pop(0)
 
-        fill = fill + 1
+    fill = fill + 1
 
 
 
@@ -292,5 +292,5 @@ def update_heartrate():
 
 if __name__ == '__main__':
 	#app.run_server(debug = False, host = '172.16.179.196', port = 80)
-	app.run_server(debug = False, host = '192.168.178.45', port = 80)
+	app.run_server(debug = False, host = '192.168.1.47', port = 80)
 
